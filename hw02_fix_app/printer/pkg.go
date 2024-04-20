@@ -1,6 +1,8 @@
 package printer
 
 import (
+	"fmt"
+
 	"github.com/fixme_my_friend/hw02_fix_app/types"
 )
 
