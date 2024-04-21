@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/fixme_my_friend/hw02_fix_app/types"
+	"github.com/vitalikir156/home_work_basic/hw02_fix_app/types"
 )
 
 func ReadJSON(filePath string, limit int) ([]types.Employee, error) {
@@ -23,7 +23,7 @@ func ReadJSON(filePath string, limit int) ([]types.Employee, error) {
 
 	var data []types.Employee
 
-	err = json.Unmarshal(byte, &data)
+	_ = json.Unmarshal(byte, &data)
 
 	res := data
 
