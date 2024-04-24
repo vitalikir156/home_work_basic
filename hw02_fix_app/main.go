@@ -1,4 +1,4 @@
-package init
+package main
 
 import (
 	"fmt"
@@ -8,12 +8,12 @@ import (
 	"github.com/vitalikir156/home_work_basic/hw02_fix_app/types"
 )
 
-func init() {
+func main() {
 	path := "data.json"
 
 	fmt.Printf("Enter data file path: ")
 	fmt.Scanln(&path)
-
+	var errprint string
 	var err error
 	var staff []types.Employee
 
@@ -24,8 +24,11 @@ func init() {
 	//}
 
 	staff, err = reader.ReadJSON(path, -1)
+	if err != nil {
+		errprint = "Error!"
+	}
 
-	fmt.Print(err)
+	fmt.Println(errprint)
 
 	printer.PrintStaff(staff)
 }

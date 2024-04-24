@@ -14,5 +14,5 @@ func PrintStaff(staff []types.Employee) {
 		fmt.Println(str)
 	}
 
-	fmt.Println(str)
+	// fmt.Println(str)
 }
