@@ -13,7 +13,7 @@ func main() {
 
 	fmt.Printf("Enter data file path: ")
 	fmt.Scanln(&path)
-	var errprint string
+
 	var err error
 	var staff []types.Employee
 
@@ -23,12 +23,10 @@ func main() {
 	// else {
 	//}
 
-	staff, err = reader.ReadJSON(path, -1)
+	staff, err = reader.ReadJSON(path)
 	if err != nil {
-		errprint = "Error!"
+		fmt.Println(err)
 	}
-
-	fmt.Println(errprint)
 
 	printer.PrintStaff(staff)
 }
