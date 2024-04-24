@@ -2,7 +2,7 @@ package reader
 
 import (
 	"encoding/json"
-	"fmt"
+	// "fmt".
 	"io"
 	"os"
 
@@ -12,13 +12,13 @@ import (
 func ReadJSON(filePath string) ([]types.Employee, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
-		fmt.Printf("Error: %v", err)
+		// fmt.Printf("Error: %v", err)
 		return nil, err
 	}
 
 	bytes, err := io.ReadAll(f)
 	if err != nil {
-		fmt.Printf("Error: %v", err)
+		// fmt.Printf("Error: %v", err)
 		return nil, err
 	}
 
@@ -26,7 +26,7 @@ func ReadJSON(filePath string) ([]types.Employee, error) {
 
 	err = json.Unmarshal(bytes, &data)
 	if err != nil {
-		fmt.Printf("Error: %v", err)
+		// fmt.Printf("Error: %v", err)
 		return nil, err
 	}
 
