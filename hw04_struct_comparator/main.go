@@ -41,29 +41,46 @@ func (d Doublebook) Comparebooks(mode ...int8) bool {
 	for _, v := range mode {
 		// mode переключает режимы сравнения, можно получить несколько, выводится первый успешный результат
 		fmt.Println(v)
-		switch v {
-		case 1:
-			{
-				if d.dbook1.year > d.dbook2.year && compint == 0 {
-					compint = 1
-				} else if d.dbook1.year < d.dbook2.year && compint == 0 {
-					compint = 2
+		if compint == 0 {
+			switch v {
+			case 1:
+				{
+					switch {
+					case d.dbook1.year > d.dbook2.year:
+						{
+							compint = 1
+						}
+					case d.dbook1.year < d.dbook2.year:
+						{
+							compint = 2
+						}
+					}
 				}
-			}
-		case 2:
-			{
-				if d.dbook1.size > d.dbook2.size && compint == 0 {
-					compint = 1
-				} else if d.dbook1.size < d.dbook2.size && compint == 0 {
-					compint = 2
+			case 2:
+				{
+					switch {
+					case d.dbook1.size > d.dbook2.size:
+						{
+							compint = 1
+						}
+					case d.dbook1.size < d.dbook2.size:
+						{
+							compint = 2
+						}
+					}
 				}
-			}
-		case 3:
-			{
-				if d.dbook1.rate > d.dbook2.rate && compint == 0 {
-					compint = 1
-				} else if d.dbook1.rate < d.dbook2.rate && compint == 0 {
-					compint = 2
+			case 3:
+				{
+					switch {
+					case d.dbook1.rate > d.dbook2.rate:
+						{
+							compint = 1
+						}
+					case d.dbook1.rate < d.dbook2.rate:
+						{
+							compint = 2
+						}
+					}
 				}
 			}
 		}
