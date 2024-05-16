@@ -57,17 +57,9 @@ func main() {
 }
 
 func calculateArea(i any) (float64, error) {
-	c, ok := i.(Circle)
+	c, ok := i.(Shape)
 	if ok {
-		return Circle.Area(c), nil
-	}
-	r, ok := i.(Rectangle)
-	if ok {
-		return Rectangle.Area(r), nil
-	}
-	s, ok := i.(Triangle)
-	if ok {
-		return Triangle.Area(s), nil
+		return Shape.Area(c), nil
 	}
 	err := errors.New("the passed object is not a shape")
 	return 0, err
