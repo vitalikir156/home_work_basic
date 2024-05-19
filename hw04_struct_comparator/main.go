@@ -14,18 +14,27 @@ type Comparator struct {
 	fieldComapre int
 }
 
-// func NewComparator(year int)*Comparator{}.
+const (
+	year = iota
+	size
+	rate
+)
+
+func NewComparator(ftc int) *Comparator {
+	return &Comparator{ftc}
+}
+
 func (c Comparator) Compare(bookOne, bookTwo *Book) bool {
 	switch c.fieldComapre {
-	case 1:
+	case 0:
 		{
 			return bookOne.year > bookTwo.year
 		}
-	case 2:
+	case 1:
 		{
 			return bookOne.size > bookTwo.size
 		}
-	case 3:
+	case 2:
 		{
 			return bookOne.rate > bookTwo.rate
 		}
@@ -35,13 +44,11 @@ func (c Comparator) Compare(bookOne, bookTwo *Book) bool {
 
 func main() {
 	book1 := Book{2134, "bookone", "author one", 2005, 63.2, 5}
-	book2 := Book{6568, "booktwo", "author two", 1974, 4099.01, 4.7}
-	compare := Comparator{1}
-	c := Comparator.Compare(compare, &book1, &book2)
-	fmt.Println(c)
+	book2 := Book{6568, "booktwo", "author two", 11974, 4099.01, 4.7}
+	fmt.Println(Comparator.Compare(*NewComparator(year), &book1, &book2))
 }
 
-func (p Book) Id() int {
+func (p Book) ID() int {
 	return p.id
 }
 
@@ -65,7 +72,7 @@ func (p Book) Rate() float32 {
 	return p.rate
 }
 
-func (p *Book) SetId(id int) {
+func (p *Book) SetID(id int) {
 	p.id = id
 }
 
