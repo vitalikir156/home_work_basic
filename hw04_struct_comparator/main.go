@@ -10,150 +10,81 @@ type Book struct {
 	year          int
 	size, rate    float32
 }
-type Doublebook struct {
-	dbook1, dbook2 Book
+type Comparator struct {
+	fieldComapre int
 }
 
-func main() {
-	book1 := Book{}
-	book2 := Book{}
-	fmt.Println("Enter book 1")
-	book1.SetBook()
-	fmt.Println("Enter book 2")
-	book2.SetBook()
-	doublebook := Doublebook{book1, book2}
-	fmt.Println(doublebook)
-	fmt.Printf("Compare mode set:\n 1 - year \n 2 - size \n 3 - rate \n >")
-	var mode int8
-	_, err := fmt.Scanln(&mode)
-	if err != nil || mode > 3 {
-		fmt.Printf("bad compare mode selection: %v! \nExiting!\n", mode)
-		return
-	}
-	comparator := doublebook.Comparebooks(mode)
-	fmt.Println(comparator)
-}
-
-func (d Doublebook) Comparebooks(mode ...int8) bool {
-	fmt.Println(mode)
-	compint := 0
-	var boolout bool
-	for _, v := range mode {
-		// mode переключает режимы сравнения, можно получить несколько, выводится первый успешный результат
-		fmt.Println(v)
-		if compint == 0 {
-			switch v {
-			case 1:
-				{
-					switch {
-					case d.dbook1.year > d.dbook2.year:
-						{
-							compint = 1
-						}
-					case d.dbook1.year < d.dbook2.year:
-						{
-							compint = 2
-						}
-					}
-				}
-			case 2:
-				{
-					switch {
-					case d.dbook1.size > d.dbook2.size:
-						{
-							compint = 1
-						}
-					case d.dbook1.size < d.dbook2.size:
-						{
-							compint = 2
-						}
-					}
-				}
-			case 3:
-				{
-					switch {
-					case d.dbook1.rate > d.dbook2.rate:
-						{
-							compint = 1
-						}
-					case d.dbook1.rate < d.dbook2.rate:
-						{
-							compint = 2
-						}
-					}
-				}
-			}
-		}
-	}
-	switch compint {
+// func NewComparator(year int)*Comparator{}.
+func (c Comparator) Compare(bookOne, bookTwo *Book) bool {
+	switch c.fieldComapre {
 	case 1:
 		{
-			boolout = true
+			return bookOne.year > bookTwo.year
 		}
 	case 2:
 		{
-			boolout = false
+			return bookOne.size > bookTwo.size
 		}
-	default:
+	case 3:
 		{
-			break
+			return bookOne.rate > bookTwo.rate
 		}
 	}
-	return boolout
+	return false
 }
 
-/*
-	func (b Book) Books() (int, string, string, int, float32, float32) {
-		return b.id, b.title, b.author, b.year, b.size, b.rate
-	}
-*/
-func (b *Book) SetBook() {
-	b.id = intreader("Id")
-	b.title = stringreader("title")
-	b.author = stringreader("author")
-	b.year = intreader("Year")
-	b.size = float32reader("Size")
-	b.rate = float32reader("Rate")
+func main() {
+	book1 := Book{2134, "bookone", "author one", 2005, 63.2, 5}
+	book2 := Book{6568, "booktwo", "author two", 1974, 4099.01, 4.7}
+	compare := Comparator{1}
+	c := Comparator.Compare(compare, &book1, &book2)
+	fmt.Println(c)
 }
 
-func intreader(name string) int {
-	var r int
-	fmt.Println("Enter", name, ":")
-	_, err := fmt.Scanln(&r)
-	if err != nil {
-		r = 0
-		fmt.Println("Fail! Using default value of", name, ": 0")
-	} else {
-		fmt.Println(name, "successfully readed:", r)
-	}
-
-	return r
+func (p Book) Id() int {
+	return p.id
 }
 
-func stringreader(name string) string {
-	var r string
-	fmt.Println("Enter", name, ":")
-	_, err := fmt.Scanln(&r)
-	if err != nil {
-		r = ""
-		fmt.Println("Fail! Using default value of", name, ": 0")
-	} else {
-		fmt.Println(name, "successfully readed:", r)
-	}
-
-	return r
+func (p Book) Title() string {
+	return p.title
 }
 
-func float32reader(name string) float32 {
-	var r float32
-	fmt.Println("Enter", name, ":")
-	_, err := fmt.Scanln(&r)
-	if err != nil {
-		r = 0
-		fmt.Println("Fail! Using default value of", name, ": 0")
-	} else {
-		fmt.Println(name, "successfully readed:", r)
-	}
+func (p Book) Author() string {
+	return p.author
+}
 
-	return r
+func (p Book) Year() int {
+	return p.year
+}
+
+func (p Book) Size() float32 {
+	return p.size
+}
+
+func (p Book) Rate() float32 {
+	return p.rate
+}
+
+func (p *Book) SetId(id int) {
+	p.id = id
+}
+
+func (p *Book) SetTitle(title string) {
+	p.title = title
+}
+
+func (p *Book) SetAuthor(author string) {
+	p.author = author
+}
+
+func (p *Book) SetYear(year int) {
+	p.year = year
+}
+
+func (p *Book) SetSize(size float32) {
+	p.size = size
+}
+
+func (p *Book) SetRate(rate float32) {
+	p.rate = rate
 }
