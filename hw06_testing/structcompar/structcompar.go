@@ -42,10 +42,13 @@ func (c Comparator) Compare(bookOne, bookTwo *Book) bool {
 	return false
 }
 
-func Structcompar(book1, book2 Book) {
-	book1 = Book{2134, "bookone", "author one", 2005, 63.2, 5}
-	book2 = Book{6568, "booktwo", "author two", 11974, 4099.01, 4.7}
+func Structcompar() {
+	book1 := Book{2134, "bookone", "author one", 2004, 63.2, 5}
+	book2 := Book{6568, "booktwo", "author two", 11974, 4099.01, 4.7}
 	fmt.Println(Comparator.Compare(*NewComparator(year), &book1, &book2))
+	fmt.Println(book1.year)
+	book1.SetYear(2095)
+	fmt.Println(book1.year)
 }
 
 func (p Book) ID() int {

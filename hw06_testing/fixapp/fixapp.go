@@ -1,14 +1,12 @@
 package fixapp
 
 import (
-	"fmt"
-
 	"github.com/vitalikir156/home_work_basic/hw06_testing/fixapp/printer"
 	"github.com/vitalikir156/home_work_basic/hw06_testing/fixapp/reader"
 	"github.com/vitalikir156/home_work_basic/hw06_testing/fixapp/types"
 )
 
-func Fixapp(path string) error {
+func Fixapp(path string) ([]types.Employee, error) {
 	//	fmt.Printf("Enter data file path: ")
 	//	fmt.Scanln(&path)
 
@@ -21,9 +19,12 @@ func Fixapp(path string) error {
 
 	staff, err = reader.ReadJSON(path)
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 
-	printer.PrintStaff(staff)
-	return err
+	err = printer.PrintStaff(staff)
+	if err != nil {
+		return nil, err
+	}
+	return staff, nil
 }

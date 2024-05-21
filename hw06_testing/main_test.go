@@ -6,6 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/vitalikir156/home_work_basic/hw06_testing/chessboard"
 	"github.com/vitalikir156/home_work_basic/hw06_testing/fixapp"
+	"github.com/vitalikir156/home_work_basic/hw06_testing/fixapp/types"
 	"github.com/vitalikir156/home_work_basic/hw06_testing/shapes"
 )
 
@@ -20,12 +21,22 @@ func TestChessBoardBad(t *testing.T) {
 }
 
 func TestFixAppGood(t *testing.T) {
-	err := fixapp.Fixapp("fixapp/data.json")
+	staff, err := fixapp.Fixapp("fixapp/data.json")
+	req := []types.Employee{
+		{UserID: 10, Age: 25, Name: "Rob", DepartmentID: 3},
+		{UserID: 11, Age: 30, Name: "George", DepartmentID: 2},
+	}
 	require.NoError(t, err)
+	require.Equal(t, staff, req)
 }
 
-func TestFixAppBad(t *testing.T) {
-	err := fixapp.Fixapp("badpatch/data.json")
+func TestFixAppBadPatch(t *testing.T) {
+	_, err := fixapp.Fixapp("badpatch/data.json")
+	require.Error(t, err)
+}
+
+func TestFixAppBadJSON(t *testing.T) {
+	_, err := fixapp.Fixapp("fixapp/baddata.json")
 	require.Error(t, err)
 }
 

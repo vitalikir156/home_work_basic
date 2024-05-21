@@ -1,6 +1,8 @@
 package types
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Employee struct {
 	UserID       int    `json:"userId"`
