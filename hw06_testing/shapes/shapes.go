@@ -25,30 +25,29 @@ func (a Circle) Area() float64    { return a.Radius * a.Radius * math.Pi }
 func (a Rectangle) Area() float64 { return a.Height * a.Width }
 func (a Triangle) Area() float64  { return a.Height * a.Base / 2 }
 
-// func (t Shape) calculateArea(s any).
 func ShapeMain() {
 	c := Circle{5}
 	r := Rectangle{10, 5}
 	t := Triangle{8, 6}
-	shapeareac, err := calculateArea(c)
+	shapeareac, err := CalculateArea(c)
 	if err != nil {
 		fmt.Println("Error: ", err)
 	} else {
 		fmt.Println(shapeareac)
 	}
-	shapearear, err := calculateArea(r)
+	shapearear, err := CalculateArea(r)
 	if err != nil {
 		fmt.Println("Error: ", err)
 	} else {
 		fmt.Println(shapearear)
 	}
-	shapeareat, err := calculateArea(t)
+	shapeareat, err := CalculateArea(t)
 	if err != nil {
 		fmt.Println("Error: ", err)
 	} else {
 		fmt.Println(shapeareat)
 	}
-	shapearea, err := calculateArea(98989)
+	shapearea, err := CalculateArea(98989)
 	if err != nil {
 		fmt.Println("Error: ", err)
 	} else {
@@ -56,7 +55,7 @@ func ShapeMain() {
 	}
 }
 
-func calculateArea(i any) (float64, error) {
+func CalculateArea(i any) (float64, error) {
 	c, ok := i.(Shape)
 	if ok {
 		return Shape.Area(c), nil

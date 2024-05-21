@@ -1,13 +1,12 @@
 package chessboard
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func Chessboard() {
-	phase := false
+func Manual() {
 	var howmuch int
-	var gm string
-	symone := "#"
-	symtwo := " "
+	var gm bool
 	fmt.Printf("Enter length: ")
 	n, err := fmt.Scanln(&howmuch)
 	if err != nil {
@@ -20,16 +19,27 @@ func Chessboard() {
 	if err != nil {
 		fmt.Println(n, err)
 		fmt.Println("Using default value (no)")
-	} else if gm == "y" || gm == "Y" || gm == "yes" || gm == "true" {
+		_ = Auto(howmuch, gm)
+	}
+}
+
+func Auto(howmuch int, gm bool) error {
+	if howmuch < 2 {
+		return fmt.Errorf("too small integer: %v", howmuch)
+	}
+	phase := false
+	symone := "#"
+	symtwo := " "
+	if gm {
 		symone = "# "
 		symtwo = "  "
 	}
-
 	for i := 0; i < howmuch; i++ {
 		horizontal(howmuch, phase, symone, symtwo)
 		fmt.Println()
 		phase = !phase
 	}
+	return nil
 }
 
 func horizontal(howmuch int, f bool, symone string, symtwo string) {
