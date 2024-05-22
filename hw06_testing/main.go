@@ -8,14 +8,31 @@ import (
 	"github.com/vitalikir156/home_work_basic/hw06_testing/shapes"
 	"github.com/vitalikir156/home_work_basic/hw06_testing/structcompar"
 )
-type Sts string
-func (t Sts) String() string {
-	
-	return string(t)+"sdsd\nsdsd"
-}
+
 func main() {
-a:=Sts("sdf")
-fmt.Println(a)
+	strcmpr()
+	fixapptst()
+	shapestst()
+}
+
+func strcmpr() {
+	var s1 structcompar.Book
+	s1.SetID(123)
+	s1.SetAuthor("author one")
+	s1.SetRate(2)
+	s1.SetSize(231)
+	s1.SetYear(2001)
+	s1.SetTitle("FoxOne")
+	var s2 structcompar.Book
+	s2.SetID(1763)
+	s2.SetAuthor("author two")
+	s2.SetRate(4)
+	s2.SetSize(12)
+	s2.SetYear(1937)
+	s2.SetTitle("Booktwo")
+	comp, err := structcompar.Structcompar(s1, s2, "size")
+	fmt.Println(comp)
+	fmt.Println(err)
 }
 
 func fixapptst() {
@@ -32,10 +49,6 @@ func fixapptst() {
 
 func shapestst() {
 	a, _ := shapes.CalculateArea(shapes.Rectangle{Width: 9, Height: 17})
-	_ = chessboard.Auto(8, true)
-	// structcompar.Structcompar()
-	var book3 structcompar.Book
-	book3.SetYear(2001)
-	fmt.Println(book3.Year())
+	_, _ = chessboard.Auto(8, true)
 	fmt.Println(a)
 }

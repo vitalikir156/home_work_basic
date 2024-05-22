@@ -42,13 +42,23 @@ func (c Comparator) Compare(bookOne, bookTwo *Book) bool {
 	return false
 }
 
-func Structcompar() {
-	book1 := Book{2134, "bookone", "author one", 2004, 63.2, 5}
-	book2 := Book{6568, "booktwo", "author two", 11974, 4099.01, 4.7}
-	fmt.Println(Comparator.Compare(*NewComparator(year), &book1, &book2))
-	fmt.Println(book1.year)
-	book1.SetYear(2095)
-	fmt.Println(book1.year)
+func Structcompar(book1, book2 Book, analogmode string) (bool, error) {
+	mode := 0
+	// book1 := Book{2134, "bookone", "author one", 2004, 63.2, 5}
+	// book2 := Book{6568, "booktwo", "author two", 11974, 4099.01, 4.7}
+	switch analogmode {
+	case "year":
+		mode = year
+	case "size":
+		mode = size
+	case "rate":
+		mode = rate
+	default:
+		return false, fmt.Errorf("bad compare mode: %v", analogmode)
+	}
+	compareout := (Comparator.Compare(*NewComparator(mode), &book1, &book2))
+
+	return compareout, nil
 }
 
 func (p Book) ID() int {

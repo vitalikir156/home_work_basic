@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+var fullchessboard string
+
 func Manual() {
 	var howmuch int
 	var gm bool
@@ -19,13 +21,14 @@ func Manual() {
 	if err != nil {
 		fmt.Println(n, err)
 		fmt.Println("Using default value (no)")
-		_ = Auto(howmuch, gm)
+		_, _ = Auto(howmuch, gm)
 	}
 }
 
-func Auto(howmuch int, gm bool) error {
+func Auto(howmuch int, gm bool) (string, error) {
+	fullchessboard = ""
 	if howmuch < 2 {
-		return fmt.Errorf("too small integer: %v", howmuch)
+		return "", fmt.Errorf("too small integer: %v", howmuch)
 	}
 	phase := false
 	symone := "#"
@@ -36,10 +39,11 @@ func Auto(howmuch int, gm bool) error {
 	}
 	for i := 0; i < howmuch; i++ {
 		horizontal(howmuch, phase, symone, symtwo)
-		fmt.Println()
+		fullchessboard += "\n"
 		phase = !phase
 	}
-	return nil
+	fmt.Println(fullchessboard)
+	return fullchessboard, nil
 }
 
 func horizontal(howmuch int, f bool, symone string, symtwo string) {
@@ -47,9 +51,9 @@ func horizontal(howmuch int, f bool, symone string, symtwo string) {
 	for i <= howmuch {
 		if f {
 			f = false
-			fmt.Printf("%s", symtwo)
+			fullchessboard += symtwo
 		} else {
-			fmt.Printf("%s", symone)
+			fullchessboard += symone
 			f = true
 		}
 		i++
