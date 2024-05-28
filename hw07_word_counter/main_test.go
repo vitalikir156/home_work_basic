@@ -43,7 +43,7 @@ func TestCountWords(t *testing.T) {
 	for _, tc := range tests {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			got := CountWords(tc.input)
+			got := countWords(tc.input)
 			require.Equal(t, tc.expected, got)
 		})
 	}

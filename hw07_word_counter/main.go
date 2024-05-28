@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	fmt.Println(CountWords("Раз раз    ,;        -089u0 ad [0o9t\rshb86574]   раз два три два ТрИ \nТри рАрз раз"))
+	fmt.Println(countWords("Раз раз    ,;        -089u0 ad [0o9t\rshb86574]   раз два три два ТрИ \nТри рАрз раз"))
 }
 
-func CountWords(instring string) map[string]int {
+func countWords(instring string) map[string]int {
 	var instringnew string
 	instring = strings.ToLower(instring)
 	instring = strings.ReplaceAll(instring, "\n", " ")
