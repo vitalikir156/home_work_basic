@@ -3,7 +3,7 @@ package main;
 option go_package = ".";
 message Book{
   sint64 id = 1;
-  string title =2;
+  string title = 2;
   string author = 3;
   sint64 year = 4;
   float size = 5;
