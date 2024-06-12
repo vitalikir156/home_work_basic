@@ -17,17 +17,18 @@ type Book struct {
 	Rate   float32 `json:"rate"`
 }
 
-type Marshaler interface {
-	MarshalJSON() ([]byte, error)
-}
-
-func (b Book) Marshal() ([]byte, error) {
-	e, err := json.Marshal(b)
+func (b Book) MarshalJSON() ([]byte, error) {
+	type tempjson Book
+	s := tempjson(b)
+	e, err := json.Marshal(s)
 	return e, err
 }
 
-func (b *Book) Unmarshal(data []byte) error {
-	err := json.Unmarshal(data, &b)
+func (b *Book) UnmarshalJSON(data []byte) error {
+	type tempjson Book
+	var s tempjson
+	err := json.Unmarshal(data, &s)
+	*b = Book(s)
 	return err
 }
 
@@ -49,11 +50,11 @@ func main() {
 		{2, "title2", "author2", 1992, 22, 3},
 	}
 	fmt.Println(slb)
-	s, _ := Book.Marshal(b)
+	s, _ := Book.MarshalJSON(b)
 	// fmt.Println(s)
-	fmt.Printf("s %s\n", s)
+	fmt.Printf("mar_json %s\n", s)
 	var e Book
-	e.Unmarshal(s)
+	e.UnmarshalJSON(s)
 	fmt.Printf("e.unmarsh %v\n", e)
 
 	slm, _ := MarshalSlice(slb)
@@ -90,7 +91,7 @@ func main() {
 	slpbook3 := &pb.Books{Books: []*pb.Book{{}}}
 	proto.Unmarshal(slpbook2, slpbook3)
 
-	fmt.Printf("asasas %s\n", slpbook)
+	fmt.Printf("slpbook %s\n", slpbook)
 	fmt.Printf("slpbook2 %s\n", slpbook2)
 	fmt.Printf("slpbook3 %s\n", slpbook3)
 	pbook.ProtoMessage()
