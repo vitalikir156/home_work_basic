@@ -49,7 +49,7 @@ func TestMarshalGood(t *testing.T) {
 	for _, tc := range tests {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			got, err := tc.input.MarshalJSON()
+			got, err := tc.input.Marshal()
 			require.NoError(t, err)
 			require.Equal(t, tc.expected, got)
 		})
@@ -100,7 +100,7 @@ func TestUnmarshalGood(t *testing.T) {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var got Book
-			err := got.UnmarshalJSON(tc.input)
+			err := got.Unmarshal(tc.input)
 			require.NoError(t, err)
 			require.Equal(t, tc.expected, got)
 		})
@@ -217,7 +217,7 @@ func TestUnmarshalBad(t *testing.T) {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var got Book
-			err := got.UnmarshalJSON(tc.input)
+			err := got.Unmarshal(tc.input)
 			require.Error(t, err)
 		})
 	}
