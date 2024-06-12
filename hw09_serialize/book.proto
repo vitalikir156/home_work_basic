@@ -9,3 +9,6 @@ message Book{
   float size = 5;
   float rate = 6;
 }
+message Books {
+  repeated Book books =1;
+}
