@@ -34,9 +34,9 @@ func TestAvearage(t *testing.T) {
 }
 
 func TestSensor(t *testing.T) {
-	ta := time.After(time.Minute)
-
-	sensdirtydata := sensor()
+	timetowait := 10
+	ta := time.After(time.Duration(timetowait) * time.Second)
+	sensdirtydata := sensor(timetowait)
 	var err error
 	go func() {
 		for task := range sensdirtydata {

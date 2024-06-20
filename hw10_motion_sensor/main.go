@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	sensdirtydata := sensor()
+	sensdirtydata := sensor(60)
 	sensaverdata := sensavearage(sensdirtydata)
 	for value := range sensaverdata {
 		fmt.Printf("val %v\n", value)
@@ -37,8 +37,8 @@ func sensavearage(dd <-chan int) chan int {
 	return out
 }
 
-func sensor() chan int {
-	to := time.After(time.Minute)
+func sensor(timer int) chan int {
+	to := time.After(time.Duration(timer) * time.Second)
 	out := make(chan int, 1)
 	go func() {
 		defer close(out)
