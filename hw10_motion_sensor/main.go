@@ -43,14 +43,13 @@ func sensor(timer int) chan int {
 	go func() {
 		defer close(out)
 		for {
+			s, _ := rand.Int(rand.Reader, big.NewInt(10))
+			r := int(s.Int64())
 			select {
 			case <-to:
 				return
-			default:
-				s, _ := rand.Int(rand.Reader, big.NewInt(10))
-				r := int(s.Int64())
+			case out <- r:
 				time.Sleep(60 * time.Millisecond)
-				out <- r
 			}
 		}
 	}()
