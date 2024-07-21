@@ -1,0 +1,68 @@
+number of input lines:929
+number of filtered lines:66
+[    0.012769] ACPI: Early table checksum verification disabled
+[    0.012772] ACPI: RSDP 0x00000000000F0450 000024 (v02 AMI   )
+[    0.012776] ACPI: XSDT 0x00000000BD77B070 00005C (v01 AMI    05F6     01072009 AMI  00010013)
+[    0.012782] ACPI: FACP 0x00000000BD782328 0000F4 (v04 AMI    05F6     01072009 AMI  00010013)
+[    0.012788] ACPI: DSDT 0x00000000BD77B158 0071CB (v02 AMI    05F6     00000010 INTL 20090903)
+[    0.012791] ACPI: FACS 0x00000000BD7FBF80 000040
+[    0.012794] ACPI: APIC 0x00000000BD782420 00007C (v03 AMI    05F6     01072009 AMI  00010013)
+[    0.012798] ACPI: SSDT 0x00000000BD7824A0 000102 (v01 AMI    05F6     00000001 MSFT 03000001)
+[    0.012801] ACPI: MCFG 0x00000000BD7825A8 00003C (v01 AMI    05F6     01072009 MSFT 00000097)
+[    0.012805] ACPI: HPET 0x00000000BD7825E8 000038 (v01 AMI    05F6     01072009 AMI. 00000004)
+[    0.012808] ACPI: DMAR 0x00000000BD782620 0000B0 (v01 AMI    05F6     00000001 INTL 00000001)
+[    0.012811] ACPI: BERT 0x00000000BD7826D0 000030 (v01 AMI    05F6     01072009 AMI  00010013)
+[    0.012814] ACPI: Reserving FACP table memory at [mem 0xbd782328-0xbd78241b]
+[    0.012816] ACPI: Reserving DSDT table memory at [mem 0xbd77b158-0xbd782322]
+[    0.012817] ACPI: Reserving FACS table memory at [mem 0xbd7fbf80-0xbd7fbfbf]
+[    0.012818] ACPI: Reserving APIC table memory at [mem 0xbd782420-0xbd78249b]
+[    0.012819] ACPI: Reserving SSDT table memory at [mem 0xbd7824a0-0xbd7825a1]
+[    0.012820] ACPI: Reserving MCFG table memory at [mem 0xbd7825a8-0xbd7825e3]
+[    0.012821] ACPI: Reserving HPET table memory at [mem 0xbd7825e8-0xbd78261f]
+[    0.012822] ACPI: Reserving DMAR table memory at [mem 0xbd782620-0xbd7826cf]
+[    0.012823] ACPI: Reserving BERT table memory at [mem 0xbd7826d0-0xbd7826ff]
+[    0.058427] ACPI: PM-Timer IO Port: 0x408
+[    0.058436] ACPI: LAPIC_NMI (acpi_id[0xff] high edge lint[0x1])
+[    0.058451] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 high edge)
+[    0.058453] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.058454] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high edge)
+[    0.058458] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.058459] ACPI: HPET id: 0x8086a701 base: 0xfed00000
+[    0.148358] ACPI: Core revision 20210730
+[    0.201760] ACPI: PM: Registering ACPI NVS region [mem 0xbd733000-0xbd77afff] (294912 bytes)
+[    0.201760] ACPI: PM: Registering ACPI NVS region [mem 0xbd7f9000-0xbd7fbfff] (12288 bytes)
+[    0.201760] ACPI: PM: Registering ACPI NVS region [mem 0xbd81d000-0xbd85ffff] (274432 bytes)
+[    0.201760] ACPI: PM: Registering ACPI NVS region [mem 0xbf7d2000-0xbf7d9fff] (32768 bytes)
+[    0.201760] ACPI: bus type PCI registered
+[    0.205120] ACPI: Added _OSI(Module Device)
+[    0.205120] ACPI: Added _OSI(Processor Device)
+[    0.205120] ACPI: Added _OSI(3.0 _SCP Extensions)
+[    0.205120] ACPI: Added _OSI(Processor Aggregator Device)
+[    0.205120] ACPI: Added _OSI(Linux-Dell-Video)
+[    0.205120] ACPI: Added _OSI(Linux-Lenovo-NV-HDMI-Audio)
+[    0.205120] ACPI: Added _OSI(Linux-HPI-Hybrid-Graphics)
+[    0.205960] ACPI: 2 ACPI AML tables successfully acquired and loaded
+[    0.208709] ACPI: Dynamic OEM Table Load:
+[    0.208714] ACPI: SSDT 0xFFFF898301454800 000448 (v01 AMI    IST      00000001 MSFT 03000001)
+[    0.209178] ACPI: Dynamic OEM Table Load:
+[    0.209182] ACPI: SSDT 0xFFFF8983001FEC00 000120 (v01 AMI    CST      00000001 MSFT 03000001)
+[    0.213092] ACPI: Interpreter enabled
+[    0.213103] ACPI: PM: (supports S0 S4 S5)
+[    0.213105] ACPI: Using IOAPIC for interrupt routing
+[    0.213380] ACPI: Enabled 6 GPEs in block 00 to 3F
+[    0.213580] ACPI: [Firmware Bug]: BIOS _OSI(Linux) query ignored
+[    0.218815] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    0.225965] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+[    0.226021] ACPI: PCI: Interrupt link LNKB configured for IRQ 5
+[    0.226074] ACPI: PCI: Interrupt link LNKC configured for IRQ 4
+[    0.226128] ACPI: PCI: Interrupt link LNKD configured for IRQ 3
+[    0.226182] ACPI: PCI: Interrupt link LNKE configured for IRQ 7
+[    0.226236] ACPI: PCI: Interrupt link LNKF configured for IRQ 0
+[    0.226290] ACPI: PCI: Interrupt link LNKG configured for IRQ 0
+[    0.226343] ACPI: PCI: Interrupt link LNKH configured for IRQ 10
+[    0.226505] ACPI: bus type USB registered
+[    0.242270] pnp: PnP ACPI: found 7 devices
+[    0.263935] ACPI: button: Power Button [PWRB]
+[    0.263990] ACPI: button: Power Button [PWRF]
+[    1.255031] ACPI: OSL: Resource conflict; ACPI support missing from driver?
+[    1.255035] ACPI: OSL: Resource conflict; ACPI support missing from driver?
