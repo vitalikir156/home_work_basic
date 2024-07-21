@@ -9,7 +9,7 @@ import (
 )
 
 func Client(u string) (string, error) {
-	result, err := http.Get(u) //nolint
+	result, err := http.Get(u+"/get") //nolint
 	if err != nil {
 		return "", err
 	}

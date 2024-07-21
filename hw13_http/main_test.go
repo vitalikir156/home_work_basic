@@ -14,7 +14,7 @@ func TestHttpGood(t *testing.T) {
 	out, err := client.Client("http://localhost:25565")
 
 	require.NoError(t, err)
-	require.Equal(t, "Test send\n200\nhello there!\n200", out)
+	require.Equal(t, "Test send\n200\nThis is a Get req\n200", out)
 }
 
 func TestHttpBad(t *testing.T) {
