@@ -5,7 +5,6 @@ import (
 	"io"
 	"os"
 	"strings"
-
 	"github.com/joho/godotenv"
 	"github.com/spf13/pflag"
 )
@@ -61,12 +60,12 @@ func main() {
 	}
 	fmt.Printf("options selected:\nfilter: %v\npath to original log file: %v\ndisplay found lines:", *filter, path)
 	fmt.Printf(" %v\npath to script output (if path empty all goes to STDOUT): %v\n\n", *watch, *logoutflie)
+
 	stringsliceinput, err := readfile(path)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		return
 	}
-
 	sorted := filterfile(stringsliceinput, *filter)
 	sortedstr := strings.Join(sorted, "\n")
 
@@ -83,7 +82,6 @@ func main() {
 			return
 		}
 		defer file.Close()
-
 		file.WriteString(out.String())
 	} else {
 		fmt.Println(out.String())
@@ -93,13 +91,11 @@ func main() {
 func readfile(path string) ([]string, error) {
 	f, err := os.Open(path)
 	if err != nil {
-		// fmt.Printf("Error: %v", err)
-		return nil, err
+			return nil, err
 	}
 
 	bytes, err := io.ReadAll(f)
 	if err != nil {
-		// fmt.Printf("Error: %v", err)ACPI
 		return nil, err
 	}
 	s := strings.Split(string(bytes), "\n")
