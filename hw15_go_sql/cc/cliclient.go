@@ -24,6 +24,15 @@ func Client(u string) {
 	3 /get?table=userorders&srch=a342e4da-1438-4d60-bd4e-7beef2791324
 	4 /get?table=usersumm&srch=a342e4da-1438-4d60-bd4e-7beef2791324
 	5 /get?table=useraver&srch=a342e4da-1438-4d60-bd4e-7beef2791324
+	6 /save", {"desc": "ATTINY 13, 8b, 9.6mhz 1k flash","price": 170}
+	7 /save?table=tableupdate", { "id":4, "desc": "ATTINY 13, 8b, 9.6mhz 1k flash","price": 170}
+	8 /save?table=deleterow", { "id":9}
+	9 /save?table=usercreate", {"name": "Edward Bill","email": "eb@rambler.ru", "password":"1212"}
+	10 /save?table=userupdate", {"id": "f89813e7-27b0-478d-b20e-f36a9ba9d759","email": "eb@rambler.ru"}
+	11 /save?table=userdelete", {"id": "f89813e7-27b0-478d-b20e-f36a9ba9d759"}
+	12 /save?table=orderadd", {"uid": "a30aaed1-7522-4c37-a6a9-b5774fe872e6"}
+	13 /save?table=orderfill", {"oid": 14, "pid":2}
+	14 /save?table=orderdel", {"oid": "15"}
 	select and hit enter:`)
 	var s int
 
@@ -36,245 +45,91 @@ func Client(u string) {
 		}
 	case 1:
 		{
-			result, err := http.Get(u + "/get") //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Getter((u + "/get"))
 		}
 	case 2:
 		{
-			result, err := http.Get(u + "/get?table=users") //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Getter((u + "/get?table=users"))
 		}
 	case 3:
 		{
-			result, err := http.Get(u + "/get?table=userorders&srch=a30aaed1-7522-4c37-a6a9-b5774fe872e6") //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Getter((u + "/get?table=userorders&srch=a30aaed1-7522-4c37-a6a9-b5774fe872e6"))
 		}
 	case 4:
 		{
-			result, err := http.Get(u + "/get?table=usersumm&srch=a342e4da-1438-4d60-bd4e-7beef2791324") //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Getter((u + "/get?table=usersumm&srch=a342e4da-1438-4d60-bd4e-7beef2791324"))
 		}
 	case 5:
 		{
-			result, err := http.Get(u + "/get?table=useraver&srch=a342e4da-1438-4d60-bd4e-7beef2791324") //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Getter((u + "/get?table=useraver&srch=a342e4da-1438-4d60-bd4e-7beef2791324"))
 		}
 	case 6:
 		{
-			data := `{"desc": "ATTINY 13, 8b, 9.6mhz 1k flash","price": 170}`
-
-			result, err := http.Post(u+"/save", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save", `{"desc": "ATTINY 13, 8b, 9.6mhz 1k flash","price": 170}`)
 		}
 	case 7:
 		{
-			data := `{ "id":4, "desc": "ATTINY 13, 8b, 9.6mhz 1k flash","price": 170}`
-
-			result, err := http.Post(u+"/save?table=tableupdate", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=tableupdate", `{ "id":4, "desc": "ATTINY 13, 8b, 9.6mhz 1k flash","price": 170}`)
 		}
 	case 8:
 		{
-			data := `{ "id":9}`
-
-			result, err := http.Post(u+"/save?table=deleterow", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=deleterow", `{ "id":9}`)
 		}
 	case 9:
 		{
-			data := `{"name": "Edward Bill","email": "eb@rambler.ru", "password":"1212"}`
-
-			result, err := http.Post(u+"/save?table=usercreate", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=usercreate", `{"name": "Edward Bill","email": "eb@rambler.ru", "password":"1212"}`)
 		}
 	case 10:
 		{
-			data := `{"id": "f89813e7-27b0-478d-b20e-f36a9ba9d759","email": "eb@rambler.ru"}`
-
-			result, err := http.Post(u+"/save?table=userupdate", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=userupdate", `{"id": "f89813e7-27b0-478d-b20e-f36a9ba9d759","email": "eb@rambler.ru"}`)
 		}
 	case 11:
 		{
-			data := `{"id": "f89813e7-27b0-478d-b20e-f36a9ba9d759"}`
-
-			result, err := http.Post(u+"/save?table=userdelete", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=userdelete", `{"id": "f89813e7-27b0-478d-b20e-f36a9ba9d759"}`)
 		}
 	case 12:
 		{
-			data := `{"uid": "a30aaed1-7522-4c37-a6a9-b5774fe872e6"}`
-
-			result, err := http.Post(u+"/save?table=orderadd", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=orderadd", `{"uid": "a30aaed1-7522-4c37-a6a9-b5774fe872e6"}`)
 		}
 	case 13:
 		{
-			data := `{"oid": 14, "pid":2}`
-
-			result, err := http.Post(u+"/save?table=orderfill", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=orderfill", `{"oid": 14, "pid":2}`)
 		}
 	case 14:
 		{
-			data := `{"oid": "15"}`
-
-			result, err := http.Post(u+"/save?table=orderdel", "", bytes.NewReader([]byte(data))) //nolint
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			defer result.Body.Close()
-
-			body, err := io.ReadAll(result.Body)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println(string(body))
+			Pusher(u+"/save?table=orderdel", `{"oid": "15"}`)
 		}
 	}
+}
+
+func Getter(u string) {
+	result, err := http.Get(u) //nolint
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer result.Body.Close()
+
+	body, err := io.ReadAll(result.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(body))
+}
+
+func Pusher(u string, d string) {
+	result, err := http.Post(u, "", bytes.NewReader([]byte(d))) //nolint
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer result.Body.Close()
+
+	body, err := io.ReadAll(result.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(body))
 }
