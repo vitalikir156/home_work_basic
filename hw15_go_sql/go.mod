@@ -1,6 +1,6 @@
 module github.com/vitalikir156/home_work_basic/hw15_go_sql
 
-go 1.20
+go 1.22
 
 require (
 	github.com/jmoiron/sqlx v1.4.0

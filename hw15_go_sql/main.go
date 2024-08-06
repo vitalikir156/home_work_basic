@@ -6,13 +6,16 @@ import (
 
 	"github.com/spf13/pflag"
 	"github.com/vitalikir156/home_work_basic/hw15_go_sql/client" // бесполезный клиент
+	sqltranslation "github.com/vitalikir156/home_work_basic/hw15_go_sql/dbc"
 	"github.com/vitalikir156/home_work_basic/hw15_go_sql/server"
 )
 
 var wg sync.WaitGroup
 
 func srv(url string) {
-	server.Server(url)
+	db := sqltranslation.Start("user=vit password=password2717 dbname=market port=5432 sslmode=disable")
+	defer db.Close()
+	server.HTTP(url, db)
 	wg.Done()
 }
 
