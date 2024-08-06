@@ -3,6 +3,7 @@ package main
 // типа клиент, потыкать серверную часть запросами.
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"io"
 	"net/http"
@@ -120,16 +121,16 @@ func Getter(u string) {
 }
 
 func Pusher(m, u, b string) {
-	req, err := http.NewRequest(m, u, bytes.NewReader([]byte(b)))
+	req, err := http.NewRequestWithContext(context.Background(), m, u, bytes.NewReader([]byte(b)))
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	client := http.Client{
 		Timeout: 30 * time.Second,
-	 }
-	 result, err := client.Do(req)
-	 if err != nil {
+	}
+	result, err := client.Do(req)
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -138,5 +139,6 @@ func Pusher(m, u, b string) {
 		fmt.Println(err)
 		return
 	}
+	result.Body.Close()
 	fmt.Println(string(body))
 }
