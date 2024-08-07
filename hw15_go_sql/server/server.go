@@ -42,11 +42,6 @@ func HTTP(u string, dbin *sqlx.DB) {
 
 func handlerGetProd(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodGet {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	out, err := sqltranslation.GetProducts(db)
 	if err != nil {
 		w.Write([]byte(fmt.Sprintf("%v", err)))
@@ -56,11 +51,6 @@ func handlerGetProd(w http.ResponseWriter, r *http.Request) {
 
 func handlerGetUsers(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodGet {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	out, err := sqltranslation.GetUsers(db)
 	if err != nil {
 		w.Write([]byte(fmt.Sprintf("%v", err)))
@@ -72,11 +62,6 @@ func handlerGetUsers(w http.ResponseWriter, r *http.Request) {
 func handlerGetUserAver(w http.ResponseWriter, r *http.Request) {
 	srch := r.URL.Query().Get("srch")
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodGet {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	if len(srch) == 0 {
 		w.Write([]byte("No search request provided!"))
 	} else {
@@ -91,11 +76,6 @@ func handlerGetUserAver(w http.ResponseWriter, r *http.Request) {
 func handlerGetUserSumm(w http.ResponseWriter, r *http.Request) {
 	srch := r.URL.Query().Get("srch")
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodGet {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	if len(srch) == 0 {
 		w.Write([]byte("No search request provided!"))
 	} else {
@@ -110,11 +90,6 @@ func handlerGetUserSumm(w http.ResponseWriter, r *http.Request) {
 func handlerGetOrders(w http.ResponseWriter, r *http.Request) {
 	srch := r.URL.Query().Get("srch")
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodGet {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	if len(srch) == 0 {
 		w.Write([]byte("No search request provided!"))
 	} else {
@@ -128,11 +103,6 @@ func handlerGetOrders(w http.ResponseWriter, r *http.Request) {
 
 func handlerPostProd(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodPost {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -151,11 +121,6 @@ func handlerPostProd(w http.ResponseWriter, r *http.Request) {
 
 func handlerPostUsers(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodPost {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -173,11 +138,6 @@ func handlerPostUsers(w http.ResponseWriter, r *http.Request) {
 
 func handlerPostOrders(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodPost {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -194,11 +154,6 @@ func handlerPostOrders(w http.ResponseWriter, r *http.Request) {
 
 func handlerPostOrderProducts(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodPost {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -215,11 +170,6 @@ func handlerPostOrderProducts(w http.ResponseWriter, r *http.Request) {
 
 func handlerUpdProd(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != "UPDATE" {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -236,11 +186,6 @@ func handlerUpdProd(w http.ResponseWriter, r *http.Request) {
 
 func handlerUpdUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != "UPDATE" {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -257,11 +202,6 @@ func handlerUpdUser(w http.ResponseWriter, r *http.Request) {
 
 func handlerDelProducts(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodDelete {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -278,11 +218,6 @@ func handlerDelProducts(w http.ResponseWriter, r *http.Request) {
 
 func handlerDelUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodDelete {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
@@ -299,11 +234,6 @@ func handlerDelUser(w http.ResponseWriter, r *http.Request) {
 
 func handlerDelOrder(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.RemoteAddr)
-	if r.Method != http.MethodDelete {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("no"))
-		return
-	}
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println(err)
