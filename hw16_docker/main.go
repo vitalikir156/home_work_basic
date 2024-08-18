@@ -20,7 +20,6 @@ func srv(url string) {
 }
 
 func main() {
-	
 	urlserv := pflag.StringP("Server URL", "s", "", "server url ':8989' for example")
 	url := pflag.StringP("client URL", "c", "", "client url")
 	mode := pflag.StringP("prog mode", "m", "", "s for server, c for client, d for dual")
@@ -33,7 +32,7 @@ func main() {
 			return
 		}
 		wg.Add(1)
-		
+
 		go srv(*urlserv)
 	}
 
